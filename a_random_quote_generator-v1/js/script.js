@@ -3,23 +3,19 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
-/*** 
- * `quotes` array 
-***/
+/***  `quotes` array: array of objects that stores the quotes, sources and, if they exist, source of citation and published year ***/
+
 const quotes = [
   {
-    quote: 'Let us always meet each other with smile, for the smile is the beginning of love.',
-   source: 'Mother Theresia'
+  quote: 'Let us always meet each other with smile, for the smile is the beginning of love.',
+  source: 'Mother Theresia'
   },
 
   {
-   quote:'Happiness is holding someone in your arms and knowing you hold the whole world.',
-    source: 'Orhan Pamuk',
-    citation: 'Snow'
+  quote:'Happiness is holding someone in your arms and knowing you hold the whole world.',
+  source: 'Orhan Pamuk',
+  citation: 'Snow'
   },
 
   {
@@ -54,11 +50,11 @@ const quotes = [
 
 // console.log(quotes);
 
-/***
- * `getRandomQuote` function
-***/
+
+/*** `getRandomQuote`function: creates a random number and uses this number to return a random quote object ***/
+
 function getRandomQuote() {
-const randomNumber = Math.floor(Math.random() * quotes.length);
+const randomNumber = Math.floor ( Math.random () * quotes.length );
 const randomQuote = quotes[randomNumber];
 console.log(randomNumber);
 console.log(randomQuote);
@@ -68,27 +64,27 @@ return randomQuote;
 getRandomQuote();
 
 
-
 /***
- * `printQuote` function
+`printQuote` function
+- function to display a new quote every time the user clicks on the "Show another quote" button
+- uses a string of HTML and quote properties
+- conditional functions inside the `printQuote` function to display year and citation if available
 ***/
 
 function printQuote() {
 const getQuoteObject = getRandomQuote();
-let quoteOutput = '<p class="quotes"> randomQuote.quote</p> <p class="source"> randomQuote.source';
-if (quotes.citation) {
-quoteOutput += '<span class="citation"> randomQuote.citation</span>';
-} if (quotes.year) {
-quoteOutput += '<span class="year">randomQuote.year</span>';
+let quoteOutput = `<p class="quotes"> ${getQuoteObject.quote} </p> <p class="source"> ${getQuoteObject.source}`;
+if (getQuoteObject.citation) {
+quoteOutput += `<span class="citation"> ${getQuoteObject.citation} </span>`;
+} if (getQuoteObject.year) {
+quoteOutput += `<span class="year"> ${getQuoteObject.year} </span>`;
 }
-quoteOutput += '</p>';
+quoteOutput += `</p>`;
 document.getElementById('quote-box').innerHTML = quoteOutput; 
 }
 
+// the `inner.HTML` of the quote-box div was inserted from the Walkthrough
 
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
+/*** event listener ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
